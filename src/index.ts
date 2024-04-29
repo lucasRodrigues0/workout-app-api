@@ -1,20 +1,30 @@
+require('dotenv').config();
 import cors from 'cors';
 import express from 'express';
 import { main } from './db';
-const router = require('./router/router');
+import { ErrorHandlingMiddleware } from './middlewares/errorMiddleware';
+import "express-async-errors";
 
+const router = require('./router/router');
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 //conecta ao banco de dados
 main();
 
-app.use('/api', router);
 app.use(express.json());
+
+//cors
 app.use(cors({
-    origin: ['http://localhost:3000', 'http://localhost:5173'],
+    origin: ['http://localhost:5173'],
     credentials: true
-}))
+}));
+
+//router
+app.use('/api', router);
+
+//error handling
+app.use(ErrorHandlingMiddleware);
 
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
