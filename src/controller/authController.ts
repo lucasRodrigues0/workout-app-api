@@ -13,13 +13,13 @@ export const addUser = async (req: Request, res: Response, next: NextFunction) =
     }
 
     if(!name) {
-        throw new BadRequestError({code: 400, message: "Name is Required", logging: true});
+        throw new BadRequestError({code: 400, message: "Name is Required"});
     }
     if(!email) {
-        throw new BadRequestError({code: 400, message: "Email is Required", logging: true});
+        throw new BadRequestError({code: 400, message: "Email is Required"});
     }
     if(!password) {
-        throw new BadRequestError({code: 400, message: "Password is Required", logging: true});
+        throw new BadRequestError({code: 400, message: "Password is Required"});
     }
 
     const data = await User.create(user);
