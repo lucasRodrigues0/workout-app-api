@@ -16,6 +16,6 @@ export const ErrorHandlingMiddleware = (err: Error, req: Request, res: Response,
         return res.status(statusCode).send({errors});
     }
 
-    console.error(JSON.stringify(err, null, 2));
+    //console.error(JSON.stringify(err, null, 2));
     return res.status(500).send({message: "Something went wrong."});
 }

@@ -4,6 +4,8 @@ import express from 'express';
 import { main } from './db';
 import { ErrorHandlingMiddleware } from './middlewares/errorMiddleware';
 import "express-async-errors";
+import cookieParser from 'cookie-parser';
+
 
 const router = require('./router/router');
 const app = express();
@@ -13,6 +15,7 @@ const port = process.env.PORT || 3000;
 main();
 
 app.use(express.json());
+app.use(cookieParser());
 
 //cors
 app.use(cors({
