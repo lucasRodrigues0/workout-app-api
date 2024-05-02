@@ -5,7 +5,7 @@ main().catch(err => console.log(err));
 export async function main() {
 
   try {
-    await mongoose.connect(`mongodb+srv://${process.env.DB_PASSWORD}@cluster0.cwxx3ek.mongodb.net/${process.env.DB_STRING_DSV}`);
+    await mongoose.connect(`${process.env.DB_STRING_DSV}`);
     console.log('connected');
   } catch(error : any) {
     console.log(`oops! an error ocurred: ${error.message}`);
