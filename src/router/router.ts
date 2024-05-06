@@ -11,6 +11,8 @@ router.post('/login', login);
 router.get('/user', authenticatedUser);
 router.post('/refresh', refresh);
 router.post('/logout', logout);
+
+//password recovery routes
 router.post('/forgot-password', forgotPassword);
 router.post('/reset-password', resetPassword);
 

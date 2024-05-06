@@ -17,10 +17,16 @@ export const forgotPassword = async (req: Request, res: Response, next: NextFunc
         throw new BadRequestError({code: 400, message: "Email not found!"});
     }
 
+    const tokenAlreadyCreated = await ForgotPassword.findOne({email: email});
+
+    if(tokenAlreadyCreated) {
+        await ForgotPassword.deleteOne({email: email});
+    }
+
     const data = await ForgotPassword.create({token: token, email: email});
 
     const subject: string = "Recuperação de senha";
-    const html: string = `<a href="${process.env.BASE_URL}/${token}">Clique aqui para alterar sua senha</a>`;
+    const html: string = `Você solicitou a troca da senha. <a href="${process.env.BASE_URL}/${token}">Clique aqui</a> para concluir a alteração`;
 
     sendEmail(email, html, subject);
 
