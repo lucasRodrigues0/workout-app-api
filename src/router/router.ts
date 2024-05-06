@@ -1,6 +1,7 @@
 import express from "express"
-import { authenticatedUser, createUser, forgotPassword, login, logout, refresh, resetPassword } from "../controller/authController";
+import { authenticatedUser, createUser, login, logout, refresh } from "../controller/authController";
 import { addWorkout } from "../controller/workoutController";
+import { forgotPassword, resetPassword } from "../controller/passwordRecoveryController";
 
 const router = express.Router();
 
