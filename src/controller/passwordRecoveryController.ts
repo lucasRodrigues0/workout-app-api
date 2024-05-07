@@ -35,7 +35,7 @@ export const forgotPassword = async (req: Request, res: Response, next: NextFunc
 
 export const resetPassword = async (req: Request, res: Response, next: NextFunction) => {
 
-    const { token, password, password_confirmation } = req.body;
+    const { token, password, passwordConfirm } = req.body;
 
     const getToken = await ForgotPassword.findOne({token: token});
 
@@ -49,7 +49,7 @@ export const resetPassword = async (req: Request, res: Response, next: NextFunct
         throw new BadRequestError({code: 400, message: "Invalid Email!"});
     }
 
-    if(password !== password_confirmation) {
+    if(password !== passwordConfirm) {
         throw new BadRequestError({code: 400, message: "Passwords do not match"});
     }
 
