@@ -46,7 +46,7 @@ export const resetPassword = async (req: Request, res: Response, next: NextFunct
     const user = User.findOne({email: getToken.email});
 
     if(!user) {
-        throw new BadRequestError({code: 400, message: "Invalid link!"});
+        throw new BadRequestError({code: 400, message: "Invalid Email!"});
     }
 
     if(password !== password_confirmation) {

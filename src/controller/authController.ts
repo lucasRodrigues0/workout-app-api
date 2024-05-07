@@ -3,8 +3,6 @@ import { User } from "../model/User";
 import BadRequestError from "../errors/BadRequestError";
 import bcryptjs from 'bcryptjs';
 import { sign, verify } from "jsonwebtoken";
-import { ForgotPassword } from "../model/ForgotPassword";
-import { sendEmail } from "../utils/sendEmail";
 
 export const createUser = async (req: Request, res: Response, next: NextFunction) => {
 
