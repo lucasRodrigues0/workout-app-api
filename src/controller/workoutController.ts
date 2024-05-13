@@ -54,7 +54,7 @@ export const deleteWorkout = async (req: Request, res: Response, next: NextFunct
 
 export const getWorkouts = async (req: Request, res: Response, next: NextFunction) => {
 
-    const { userId } = req.body;
+    const { userId } = req.params;
 
     if(!userId) {
         throw new BadRequestError({code: 400, message: "please inform the user Id"});

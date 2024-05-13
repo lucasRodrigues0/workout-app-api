@@ -18,7 +18,7 @@ router.post('/reset-password', resetPassword);
 
 //workout routes
 router.post('/add-workout', addWorkout);
-router.get('/get-workouts', getWorkouts);
+router.get('/get-workouts/:userId', getWorkouts);
 router.post('/delete-workout', deleteWorkout);
 
 module.exports = router;
