@@ -26,7 +26,7 @@ export const forgotPassword = async (req: Request, res: Response, next: NextFunc
     const data = await ForgotPassword.create({token: token, email: email});
 
     const subject: string = "Recuperação de senha";
-    const html: string = `Você solicitou a troca da senha. <a href="${process.env.BASE_URL}/${token}">Clique aqui</a> para concluir a alteração`;
+    const html: string = `Você solicitou a troca da senha. <a href="${process.env.BASE_URL}/reset-password/${token}">Clique aqui</a> para concluir a alteração`;
 
     sendEmail(email, html, subject);
 
