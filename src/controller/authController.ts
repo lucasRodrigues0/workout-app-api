@@ -141,3 +141,14 @@ export const logout = (req: Request, res: Response, next: NextFunction) => {
     return res.status(200).send({message: "success!"});
 }
 
+export const checkEmail = async (req: Request, res: Response, next: NextFunction) => {
+    const { email } = req.body;
+
+    const response = await User.findOne({email: email});
+    if(!response) {
+        return res.status(200).send(false);
+    }
+
+    return res.status(200).send(true);
+}
+
