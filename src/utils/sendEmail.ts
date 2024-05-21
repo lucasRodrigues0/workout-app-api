@@ -7,10 +7,10 @@ export const sendEmail = async (email: string, html: string, subject: string) =>
             host: process.env.MAIL_HOST,
             port: parseInt(process.env.MAIL_PORT as string, 10),
             secure: false,
-            auth: {
-                user: process.env.MAIL_USER,
-                pass: process.env.MAIL_PASS
-            }
+            // auth: {
+            //     user: process.env.MAIL_USER,
+            //     pass: process.env.MAIL_PASS
+            // }
         })
 
         await transporter.sendMail({
