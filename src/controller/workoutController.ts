@@ -68,3 +68,16 @@ export const getWorkouts = async (req: Request, res: Response, next: NextFunctio
 
     res.status(200).send(data);
 }
+
+export const getWorkoutDetails = async (req: Request, res: Response, next: NextFunction) => {
+
+    const { key } = req.params;
+
+    const data = await Workout.find({key: key});
+
+    if(!data) {
+        throw new BadRequestError({code: 400, message: "something went wrong"});
+    }
+
+    res.status(200).send(data);
+}
