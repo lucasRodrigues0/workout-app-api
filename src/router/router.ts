@@ -1,7 +1,7 @@
 import express from "express"
 import { authenticatedUser, checkEmail, createUser, login, logout, refresh } from "../controller/authController";
 import { addWorkout, deleteWorkout, getWorkoutDetails, getWorkouts } from "../controller/workoutController";
-import { forgotPassword, resetPassword } from "../controller/passwordRecoveryController";
+import { checkToken, forgotPassword, resetPassword } from "../controller/passwordRecoveryController";
 
 const router = express.Router();
 
@@ -15,6 +15,7 @@ router.post('/logout', logout);
 //password recovery routes
 router.post('/forgot-password', forgotPassword);
 router.post('/reset-password', resetPassword);
+router.get('/check-token/:token', checkToken);
 
 //workout routes
 router.post('/add-workout', addWorkout);

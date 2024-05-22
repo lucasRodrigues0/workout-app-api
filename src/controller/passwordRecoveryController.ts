@@ -97,3 +97,15 @@ export const resetPassword = async (req: Request, res: Response, next: NextFunct
     return res.status(200).send({message: "Success!"});
 
 }
+
+export const checkToken = async (req: Request, res: Response, next: NextFunction) => {
+    const { token } = req.params;
+
+    const response = await ForgotPassword.findOne({token: token});
+
+    if(!response) {
+        return res.status(200).send({valid: false});
+    }
+
+    return res.status(200).send({valid: true});
+}
