@@ -109,11 +109,15 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
 
     res.cookie('access_token', token, {
         httpOnly: true,
+        secure: true,
+        sameSite: 'none',
         maxAge: 24 * 60 * 60 * 1000 //1d
     });
 
     res.cookie('refresh_token', refreshToken, {
         httpOnly: true,
+        secure: true,
+        sameSite: 'none',
         maxAge: 24 * 60 * 60 * 1000 * 7 //7d
     });
     
@@ -170,6 +174,8 @@ export const refresh = (req: Request, res: Response, next: NextFunction) => {
 
     res.cookie('access_token', token, {
         httpOnly: true,
+        secure: true,
+        sameSite: 'none',
         maxAge: 24 * 60 * 60 * 1000 //1d
     });
 
