@@ -183,8 +183,8 @@ export const refresh = (req: Request, res: Response, next: NextFunction) => {
 }
 
 export const logout = (req: Request, res: Response, next: NextFunction) => {
-    res.cookie('access_token', '', {maxAge: 0});
-    res.cookie('refresh_token', '', {maxAge: 0});
+    res.cookie('access_token', '', {sameSite: 'none',maxAge: 0});
+    res.cookie('refresh_token', '', {sameSite: 'none',maxAge: 0});
 
     return res.status(200).send({message: "success!"});
 }
