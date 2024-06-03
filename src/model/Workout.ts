@@ -14,7 +14,7 @@ const WorkoutSchema = new Schema({
         required: true
     },
     details: {
-        type: Array<{name: string, obs: string}>,
+        type: Array<{img: string, name: string, category: string, reps: string, obs: string}>,
         default: []
     }
 })

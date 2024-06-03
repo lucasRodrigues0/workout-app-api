@@ -6,10 +6,11 @@ import { sign, verify } from "jsonwebtoken";
 
 export const createUser = async (req: Request, res: Response, next: NextFunction) => {
 
-    const { name, email, password, passwordConfirm, admin } = req.body;
+    const { name, secondName, email, password, passwordConfirm, admin } = req.body;
 
     const user = {
         name,
+        secondName,
         email,
         password: await bcryptjs.hash(password, 12),
         admin
@@ -17,6 +18,9 @@ export const createUser = async (req: Request, res: Response, next: NextFunction
 
     if(!name) {
         throw new BadRequestError({code: 400, message: "Name is Required"});
+    }
+    if(!secondName) {
+        throw new BadRequestError({code: 400, message: "Second name is Required"});
     }
     if(!email) {
         throw new BadRequestError({code: 400, message: "Email is Required"});
@@ -149,6 +153,7 @@ export const authenticatedUser = async (req: Request, res: Response, next: NextF
 
     const data = {
         name: user.name,
+        secondName: user.secondName,
         email: user.email,
         id: user._id
     }
