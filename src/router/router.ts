@@ -1,6 +1,6 @@
 import express from "express"
 import { authenticatedUser, checkEmail, createUser, login, logout, refresh } from "../controller/authController";
-import { addWorkout, deleteWorkout, getWorkoutDetails, getWorkouts } from "../controller/workoutController";
+import { addWorkout, createExercise, deleteWorkout, getAllExercises, getWorkoutDetails, getWorkouts } from "../controller/workoutController";
 import { checkToken, forgotPassword, resetPassword } from "../controller/passwordRecoveryController";
 
 const router = express.Router();
@@ -22,6 +22,8 @@ router.post('/add-workout', addWorkout);
 router.get('/get-workouts/:userId', getWorkouts);
 router.post('/delete-workout', deleteWorkout);
 router.get('/details/:key', getWorkoutDetails);
+router.post('/create-exercise', createExercise);
+router.get('/exercises', getAllExercises);
 
 //misc routes
 router.post('/check-email', checkEmail);

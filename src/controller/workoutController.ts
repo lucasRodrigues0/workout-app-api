@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { Workout } from "../model/Workout";
 import BadRequestError from "../errors/BadRequestError";
+import { Exercise } from "../model/Exercise";
 
 export const addWorkout = async (req: Request, res: Response, next: NextFunction) => {
 
@@ -80,4 +81,45 @@ export const getWorkoutDetails = async (req: Request, res: Response, next: NextF
     }
 
     res.status(200).send(data);
+}
+
+export const createExercise = async (req: Request, res: Response, next: NextFunction) => {
+    const { img, name, category, series, reps, obs } = req.body;
+
+    if(!name) {
+        throw new BadRequestError({code: 400, message: "name is required"});
+    }
+
+    if(!category) {
+        throw new BadRequestError({code: 400, message: "category is required"});
+    }
+
+    if(!series) {
+        throw new BadRequestError({code: 400, message: "series is required"});
+    }
+
+    if(!reps) {
+        throw new BadRequestError({code: 400, message: "reps is required"});
+    }
+
+    const exercise = {
+        img,
+        name,
+        category,
+        series,
+        reps,
+        obs
+    }
+
+    await Exercise.create(exercise);
+
+    return res.status(200).send(exercise);    
+
+}
+
+export const getAllExercises = async (req: Request, res: Response, next: NextFunction) => {
+
+    const data = await Exercise.find({});
+
+    return res.status(200).send(data);
 }

@@ -1,27 +1,30 @@
 import mongoose, { Schema } from "mongoose";
 
-const UserSchema = new Schema({
+const ExerciseSchema = new Schema({
+    img: {
+        type: String,
+        required: false
+    },
     name: {
         type: String,
         required: true
     },
-    secondName: {
+    category: {
         type: String,
         required: true
     },
-    email: {
+    series: {
         type: String,
         required: true
     },
-    password: {
+    reps: {
         type: String,
         required: true
     },
-    admin: {
-        type: Boolean,
-        required: true,
-        default: false
+    obs: {
+        type: String,
+        required: false
     }
 });
 
-export const User = mongoose.model('users', UserSchema);
+export const Exercise = mongoose.model('exercises', ExerciseSchema);
